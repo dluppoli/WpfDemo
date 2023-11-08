@@ -1,0 +1,40 @@
+﻿<Window x:Class="WpfDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDemo"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <!--<StackPanel Orientation="Vertical">
+        <Label>Hello World!</Label>
+        <Button>Click me!</Button>
+        <Rectangle Fill="Red" Height="30"></Rectangle>
+    </StackPanel>-->
+
+    <!--<DockPanel>
+        <Rectangle Fill="Red" DockPanel.Dock="Left" Width="100"></Rectangle>
+        <Rectangle Fill="DarkGray" DockPanel.Dock="Top" Height="30"></Rectangle>
+        <Rectangle Fill="AliceBlue"></Rectangle>
+    </DockPanel>-->
+
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Questa è una label"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Text="aaa"/>
+        <ComboBox Grid.Row="0" Grid.Column="2"></ComboBox>
+        <Button Grid.Row="1" Grid.Column="0" Background="BlueViolet" Foreground="White"  BorderBrush="Brown" BorderThickness="5">Click</Button>
+        <CheckBox Grid.Row="1" Grid.Column="1">Questa è una checkbox</CheckBox>
+
+    </Grid>
+</Window>
