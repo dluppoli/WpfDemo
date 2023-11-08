@@ -7,6 +7,30 @@
         mc:Ignorable="d"
         Title="LoginView" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="1" Grid.Column="1">Username</Label>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Label Grid.Row="4" Grid.Column="1">Password</Label>
+        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Button Grid.Row="7" Grid.Column="1" Click="Button_Click" IsEnabled="{Binding CanLogin}">Login</Button>
+        <Label Grid.Row="8" Grid.Column="1" Content="{Binding Risultato}" HorizontalContentAlignment="Center" FontSize="18" Foreground="red"/>
     </Grid>
 </Window>

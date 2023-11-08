@@ -27,5 +27,10 @@ namespace WpfDemo.Views
             vm = new LoginViewModel();
             DataContext = vm;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            vm.Login();
+        }
     }
 }
