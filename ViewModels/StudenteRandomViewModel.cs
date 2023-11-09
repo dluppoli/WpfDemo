@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpfDemo.Controllers;
 using WpfDemo.Models;
 
 namespace WpfDemo.ViewModels
@@ -21,31 +22,7 @@ namespace WpfDemo.ViewModels
 
 		public void GetStudenteRandom()
 		{ 
-			using(SqlConnection conn = new SqlConnection(connString))
-			{
-				try
-				{
-					conn.Open();
-					SqlCommand cmd = new SqlCommand("select TOP 1 * from Studenti order by NEWID()", conn);
-					SqlDataReader reader = cmd.ExecuteReader();
-
-					reader.Read();
-					Studente = new Studente
-					{
-						Id = (int)reader["Id"],
-						Cognome = (string)reader["Cognome"],
-						Nome = (string)reader["Nome"],
-						DataNascita = (DateTime)reader["DataNascita"],
-						IdCorso = (int)reader["IdCorso"]
-					};
-
-					//Studente = $"{s.Cognome} {s.Nome}";
-				}
-				catch(Exception ex)
-				{
-
-				}
-			}
+			Studente = StudentiController.GetStudenteRandom();
         }
 	}
 }
