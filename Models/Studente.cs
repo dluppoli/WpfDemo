@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpfDemo.Models
 {
-    internal class Studente
+    public class Studente
     {
         //Db Mapped
         public int Id { get; set; }

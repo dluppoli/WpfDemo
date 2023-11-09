@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfDemo.Models;
 using WpfDemo.ViewModels;
 
 namespace WpfDemo.Views
@@ -25,6 +26,13 @@ namespace WpfDemo.Views
         {
             InitializeComponent();
             vm = new StudenteViewModel();
+            DataContext = vm;
+        }
+
+        public StudenteView(Studente s)
+        {
+            InitializeComponent();
+            vm = new StudenteViewModel(s);
             DataContext = vm;
         }
 

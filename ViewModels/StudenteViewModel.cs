@@ -10,6 +10,8 @@ namespace WpfDemo.ViewModels
 {
     internal class StudenteViewModel : BaseViewModel
     {
+		private bool isNew;
+
 		private Studente _studente;
 
 		public Studente Studente
@@ -28,8 +30,15 @@ namespace WpfDemo.ViewModels
 
         public StudenteViewModel()
         {
+			isNew = true;
 			_studente = new Studente();
 			_corsi = CorsiController.GetAll();
+        }
+
+        public StudenteViewModel(Studente s)
+        {
+			isNew = false;
+			//TODO
         }
 
         public void Conferma()

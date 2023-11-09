@@ -42,5 +42,10 @@ namespace WpfDemo.Views
         {
             vm.Nuovo();
         }
+
+        private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            vm.Edit();
+        }
     }
 }

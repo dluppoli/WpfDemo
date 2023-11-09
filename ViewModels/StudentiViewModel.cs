@@ -68,5 +68,14 @@ namespace WpfDemo.ViewModels
 			StudenteView view = new StudenteView();
 			view.ShowDialog();
 		}
+
+		public void Edit()
+		{
+			if (StudenteSelezionato != null)
+			{
+				StudenteView view = new StudenteView(StudenteSelezionato);
+				view.ShowDialog();
+			}
+        }
 	}
 }

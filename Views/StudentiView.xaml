@@ -26,7 +26,7 @@
             <Button Click="Elimina_Click" IsEnabled="{Binding CanDelete}">Elimina</Button>
             <Button Margin="10 0 0 0" Click="Nuovo_Click">Nuovo</Button>
         </StackPanel>
-        <DataGrid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding Studenti}" SelectedItem="{Binding StudenteSelezionato}"  IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False">
+        <DataGrid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding Studenti}" SelectedItem="{Binding StudenteSelezionato}"  IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False" MouseDoubleClick="DataGrid_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Cognome" Binding="{Binding Cognome}"/>
