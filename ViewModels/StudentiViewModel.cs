@@ -10,12 +10,12 @@ namespace WpfDemo.ViewModels
 {
     internal class StudentiViewModel : BaseViewModel
     {
-		private string _filtro;
+		private string _filtro="";
 
 		public string Filtro
 		{
 			get { return _filtro; }
-			set { _filtro = value; PropChanged("Filtro"); }
+			set { _filtro = value; PropChanged("Filtro"); Filtra(); }
 		}
 
 		private List<Studente> _studenti;

@@ -19,8 +19,8 @@
         </Grid.RowDefinitions>
         <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontSize="48" FontWeight="Bold">Gestione Studenti</Label>
         <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal">
-            <TextBox Width="300" Text="{Binding Filtro}"></TextBox>
-            <Button Margin="10 0 0 0" Click="Filtra_Click">Filtra</Button>
+            <TextBox Width="300" Text="{Binding Filtro, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <!--<Button Margin="10 0 0 0" Click="Filtra_Click">Filtra</Button>-->
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button>Elimina</Button>

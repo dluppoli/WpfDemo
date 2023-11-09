@@ -51,7 +51,8 @@ namespace WpfDemo.Controllers
             {
                 conn.Open();
 
-                var command = new SqlCommand("select Studenti.*, Corsi.Nome As NomeCorso from Studenti INNER JOIN Corsi ON Studenti.IdCorso = Corsi.Id order by Studenti.Id", conn);
+                var command = new SqlCommand("select Studenti.*, Corsi.Nome As NomeCorso from Studenti INNER JOIN Corsi ON Studenti.IdCorso = Corsi.Id where Studenti.Cognome like @filtro OR Studenti.Nome like @filtro order by Studenti.Id", conn);
+                command.Parameters.AddWithValue("@filtro", $"%{filtro}%");
                 var reader = command.ExecuteReader();
 
                 while(reader.Read())
