@@ -65,11 +65,15 @@
     <Compile Include="ViewModels\CalcolatriceViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\StudenteRandomViewModel.cs" />
+    <Compile Include="ViewModels\StudentiViewModel.cs" />
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StudenteRandomView.xaml.cs">
       <DependentUpon>StudenteRandomView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StudentiView.xaml.cs">
+      <DependentUpon>StudentiView.xaml</DependentUpon>
     </Compile>
     <Page Include="Calcolatrice.xaml">
       <SubType>Designer</SubType>
@@ -95,6 +99,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\StudenteRandomView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StudentiView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -10,5 +10,7 @@ namespace WpfDemo.Models
     {
         public int Id { get; set; }
         public string Nome { get; set; }
+
+        public Studente[] Studenti { get; set; }
     }
 }

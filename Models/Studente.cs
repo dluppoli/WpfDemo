@@ -15,7 +15,9 @@ namespace WpfDemo.Models
         public DateTime DataNascita { get; set; }
         public int IdCorso { get; set; }
 
+        public Corso Corso { get; set; }
+
         //Not Mapped
-        public string CognomeNome { get { return $"{Cognome} {Nome}"; } }
+        public string CognomeNome { get { return $"{Cognome} {Nome} {Corso.Nome}"; } }
     }
 }
