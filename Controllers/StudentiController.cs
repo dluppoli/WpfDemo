@@ -78,7 +78,18 @@ namespace WpfDemo.Controllers
 
         internal static void Add(Studente studente)
         {
-            
+            using (var conn = new SqlConnection(connString))
+            {
+                conn.Open();
+
+                var command = new SqlCommand("INSERT INTO Studenti(Cognome,Nome,DataNascita,IdCorso) VALUES(@Cognome, @Nome, @DataNascita, @IdCorso)", conn);
+                command.Parameters.AddWithValue("@Cognome", studente.Cognome);
+                command.Parameters.AddWithValue("@Nome", studente.Nome);
+                command.Parameters.AddWithValue("@DataNascita", studente.DataNascita);
+                command.Parameters.AddWithValue("@IdCorso", studente.IdCorso);
+
+                command.ExecuteNonQuery();
+            }
         }
 
         internal static void Delete(int id)

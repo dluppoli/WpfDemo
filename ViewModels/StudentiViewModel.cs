@@ -67,6 +67,7 @@ namespace WpfDemo.ViewModels
 		{
 			StudenteView view = new StudenteView();
 			view.ShowDialog();
+			Filtra();
 		}
 
 		public void Edit()
@@ -75,6 +76,7 @@ namespace WpfDemo.ViewModels
 			{
 				StudenteView view = new StudenteView(StudenteSelezionato);
 				view.ShowDialog();
+				Filtra();
 			}
         }
 	}
