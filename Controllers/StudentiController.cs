@@ -76,6 +76,11 @@ namespace WpfDemo.Controllers
             }
         }
 
+        internal static void Add(Studente studente)
+        {
+            
+        }
+
         internal static void Delete(int id)
         {
             using(SqlConnection conn = new SqlConnection(connString))

@@ -57,6 +57,7 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Compile Include="Controllers\CorsiController.cs" />
     <Compile Include="Controllers\StudentiController.cs" />
     <Compile Include="Models\Corso.cs" />
     <Compile Include="Models\Studente.cs" />

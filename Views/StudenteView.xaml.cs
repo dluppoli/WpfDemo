@@ -27,5 +27,17 @@ namespace WpfDemo.Views
             vm = new StudenteViewModel();
             DataContext = vm;
         }
+
+        private void Annulla_Click(object sender, RoutedEventArgs e)
+        {
+            vm.Annulla();
+            Close();
+        }
+
+        private void Conferma_Click(object sender, RoutedEventArgs e)
+        {
+            vm.Conferma();
+            Close();
+        }
     }
 }

@@ -23,17 +23,17 @@
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" FontSize="48" FontWeight="Bold">Nuovo Studente</Label>
         <Label Grid.Row="1" Grid.Column="0">Cognome</Label>
-        <TextBox Grid.Row="2" Grid.Column="0"></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="0" Text="{Binding Studente.Cognome}"></TextBox>
         <Label Grid.Row="1" Grid.Column="2">Nome</Label>
-        <TextBox Grid.Row="2" Grid.Column="2"></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding Studente.Nome}"></TextBox>
 
         <Label Grid.Row="3" Grid.Column="0">Data nascita</Label>
-        <DatePicker Grid.Row="4" Grid.Column="0"/>
+        <DatePicker Grid.Row="4" Grid.Column="0" SelectedDate="{Binding Studente.DataNascita}"/>
 
         <Label Grid.Row="3" Grid.Column="3">Corso</Label>
-        <ComboBox Grid.Row="4" Grid.Column="3"></ComboBox>
+        <ComboBox Grid.Row="4" Grid.Column="3" ItemsSource="{Binding Corsi}" DisplayMemberPath="Nome" SelectedValuePath="Id" SelectedValue="{Binding Studente.IdCorso}"></ComboBox>
 
-        <Button Grid.Row="6" Grid.Column="0" Width="150" HorizontalAlignment="Left">Annulla</Button>
-        <Button Grid.Row="6" Grid.Column="3" Width="150" HorizontalAlignment="Right">Conferma</Button>
+        <Button Grid.Row="6" Grid.Column="0" Width="150" HorizontalAlignment="Left" Click="Annulla_Click">Annulla</Button>
+        <Button Grid.Row="6" Grid.Column="3" Width="150" HorizontalAlignment="Right" Click="Conferma_Click">Conferma</Button>
     </Grid>
 </Window>
