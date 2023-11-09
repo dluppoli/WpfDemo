@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WpfDemo.Controllers;
 using WpfDemo.Models;
+using WpfDemo.Views;
 
 namespace WpfDemo.ViewModels
 {
@@ -25,7 +26,23 @@ namespace WpfDemo.ViewModels
 			set { _studenti = value; PropChanged("Studenti"); }
 		}
 
-        public StudentiViewModel()
+		private Studente _studenteSelezionato;
+
+		public Studente StudenteSelezionato
+		{
+			get { return _studenteSelezionato; }
+			set { _studenteSelezionato = value; PropChanged("StudenteSelezionato"); PropChanged("CanDelete"); }
+		}
+
+		public bool CanDelete
+		{
+			get
+			{
+				return StudenteSelezionato != null;
+			}
+		}
+
+		public StudentiViewModel()
         {
             _studenti = StudentiController.GetStudenti(Filtro);
         }
@@ -33,6 +50,23 @@ namespace WpfDemo.ViewModels
         public void Filtra()
 		{
 			Studenti = StudentiController.GetStudenti(Filtro);
+		}
+
+		public void Elimina()
+		{
+			if( StudenteSelezionato!=null)
+			{
+				StudentiController.Delete(StudenteSelezionato.Id);
+				Filtro = "";
+				StudenteSelezionato=null;
+				Filtra();
+			}
+		}
+
+		public void Nuovo()
+		{
+			StudenteView view = new StudenteView();
+			view.ShowDialog();
 		}
 	}
 }

@@ -75,5 +75,18 @@ namespace WpfDemo.Controllers
                 return risultati;
             }
         }
+
+        internal static void Delete(int id)
+        {
+            using(SqlConnection conn = new SqlConnection(connString))
+            {
+                conn.Open();
+
+                var command = new SqlCommand("DELETE FROM Studenti WHERE Id = @Id",conn);
+                command.Parameters.AddWithValue("@Id", id);
+
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }
