@@ -51,8 +51,9 @@ namespace WpfDemo.Controllers
             {
                 conn.Open();
 
-                var command = new SqlCommand("select Studenti.*, Corsi.Nome As NomeCorso from Studenti INNER JOIN Corsi ON Studenti.IdCorso = Corsi.Id where Studenti.Cognome like @filtro OR Studenti.Nome like @filtro order by Studenti.Id", conn);
-                command.Parameters.AddWithValue("@filtro", $"%{filtro}%");
+                //var command = new SqlCommand("select Studenti.*, Corsi.Nome As NomeCorso from Studenti INNER JOIN Corsi ON Studenti.IdCorso = Corsi.Id where Studenti.Cognome like @filtro OR Studenti.Nome like @filtro order by Studenti.Id", conn);
+                var command = new SqlCommand("select Studenti.*, Corsi.Nome As NomeCorso from Studenti INNER JOIN Corsi ON Studenti.IdCorso = Corsi.Id order by Studenti.Id", conn);
+                //command.Parameters.AddWithValue("@filtro", $"%{filtro}%");
                 var reader = command.ExecuteReader();
 
                 while(reader.Read())
@@ -72,7 +73,13 @@ namespace WpfDemo.Controllers
                     };
                     risultati.Add(s);
                 }
-                return risultati;
+
+                //Predicate<Studente> f_anon = delegate (Studente s) { return s.CognomeNome.Contains(filtro); };
+                Predicate<Studente> f_anon = s => s.CognomeNome.Contains(filtro);
+
+                //return risultati.FindAll( s => s.CognomeNome.Contains(filtro) );
+                return risultati.FindAll(s => s.DataNascita.Month==11 );
+
             }
         }
 
