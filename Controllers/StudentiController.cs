@@ -92,6 +92,23 @@ namespace WpfDemo.Controllers
             }
         }
 
+        internal static void Edit(Studente studente)
+        {
+            using (var conn = new SqlConnection(connString))
+            {
+                conn.Open();
+
+                var command = new SqlCommand("UPDATE Studenti SET Cognome=@Cognome, Nome=@Nome, DataNascita=@DataNascita, IdCorso=@IdCorso WHERE Id=@Id",conn);
+                command.Parameters.AddWithValue("@Cognome", studente.Cognome);
+                command.Parameters.AddWithValue("@Nome", studente.Nome);
+                command.Parameters.AddWithValue("@DataNascita", studente.DataNascita);
+                command.Parameters.AddWithValue("@IdCorso", studente.IdCorso);
+                command.Parameters.AddWithValue("@Id", studente.Id);
+
+                command.ExecuteNonQuery();
+            }
+        }
+
         internal static void Delete(int id)
         {
             using(SqlConnection conn = new SqlConnection(connString))
