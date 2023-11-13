@@ -18,7 +18,7 @@ namespace WpfDemo.Views
     /// <summary>
     /// Interaction logic for LoginView.xaml
     /// </summary>
-    public partial class LoginView : Window
+    public partial class LoginView : Page
     {
         private LoginViewModel vm;
         public LoginView()
@@ -30,7 +30,12 @@ namespace WpfDemo.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            vm.Login();
+            if( vm.Login() ) NavigationService.Navigate( new StudentiView() );
+        }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            vm.Password = ((PasswordBox)sender).Password;
         }
     }
 }

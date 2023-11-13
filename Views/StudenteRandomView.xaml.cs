@@ -18,7 +18,7 @@ namespace WpfDemo.Views
     /// <summary>
     /// Interaction logic for StudenteRandomView.xaml
     /// </summary>
-    public partial class StudenteRandomView : Window
+    public partial class StudenteRandomView : Page
     {
         private StudenteRandomViewModel vm;
         public StudenteRandomView()

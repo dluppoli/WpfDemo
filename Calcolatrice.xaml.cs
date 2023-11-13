@@ -19,7 +19,7 @@ namespace WpfDemo
     /// <summary>
     /// Interaction logic for Calcolatrice.xaml
     /// </summary>
-    public partial class Calcolatrice : Window 
+    public partial class Calcolatrice : Page 
     {
         private CalcolatriceViewModel vm;
         public Calcolatrice()

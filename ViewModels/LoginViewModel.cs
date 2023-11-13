@@ -41,7 +41,7 @@ namespace WpfDemo.ViewModels
             // !( string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password) )
         }
 
-        public void Login()
+        public bool Login()
 		{
 			string connectionString = @"Server=E80\SQLEXPRESS;Database=Studenti;Integrated Security=true";
 
@@ -65,16 +65,18 @@ namespace WpfDemo.ViewModels
 							FullName = (string)reader["FullName"]
 						};
 						Risultato = $"Benvenuto {u.FullName}";
+						return true;
 					}
 					else
 					{
 						//Login errato
 						Risultato = "Login errato";
+						return false;
 					}
 				}
 				catch (Exception ex)
 				{
-
+					return false;
 				}
 				//connection.Close();
 			}

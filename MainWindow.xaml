@@ -6,35 +6,17 @@
         xmlns:local="clr-namespace:WpfDemo"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <!--<StackPanel Orientation="Vertical">
-        <Label>Hello World!</Label>
-        <Button>Click me!</Button>
-        <Rectangle Fill="Red" Height="30"></Rectangle>
-    </StackPanel>-->
 
-    <!--<DockPanel>
-        <Rectangle Fill="Red" DockPanel.Dock="Left" Width="100"></Rectangle>
-        <Rectangle Fill="DarkGray" DockPanel.Dock="Top" Height="30"></Rectangle>
-        <Rectangle Fill="AliceBlue"></Rectangle>
-    </DockPanel>-->
-
-    <Grid Margin="10">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"></ColumnDefinition>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-
-        <Label Content="Questa è una label"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Text="aaa"/>
-        <ComboBox Grid.Row="0" Grid.Column="2"></ComboBox>
-        <Button Grid.Row="1" Grid.Column="0" Background="BlueViolet" Foreground="White"  BorderBrush="Brown" BorderThickness="5">Click</Button>
-        <CheckBox Grid.Row="1" Grid.Column="1">Questa è una checkbox</CheckBox>
-
-    </Grid>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Logout" Click="Logout_Click" IsEnabled="{Binding IsLogged}"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Funzionalità" IsEnabled="{Binding IsLogged}">
+                <MenuItem Header="Studente Random" Click="Random_Click"/>
+                <MenuItem Header="Calcolatrice" Click="Calcolatrice_Click"/>
+            </MenuItem>
+        </Menu>
+        <Frame x:Name="NavigationService" Source="./Views/LoginView.xaml" NavigationUIVisibility="Hidden"></Frame>
+    </DockPanel>
 </Window>

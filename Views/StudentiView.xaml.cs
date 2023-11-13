@@ -18,7 +18,7 @@ namespace WpfDemo.Views
     /// <summary>
     /// Interaction logic for StudentiView.xaml
     /// </summary>
-    public partial class StudentiView : Window
+    public partial class StudentiView : Page
     {
         private StudentiViewModel vm;
         public StudentiView()
