@@ -56,7 +56,12 @@ namespace WpfDemo.ViewModels
         public void Conferma()
 		{
 			if (isNew)
+			{
 				StudentiController.Add(Studente);
+				Studente.Cognome = "";
+				Studente.Nome = "";
+				//Studente = new Studente();
+			}
 			else
 				StudentiController.Edit(Studente);
 		}

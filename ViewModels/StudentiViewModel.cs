@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,8 +20,8 @@ namespace WpfDemo.ViewModels
 			set { _filtro = value; PropChanged("Filtro"); Filtra(); }
 		}
 
-		private List<Studente> _studenti;
-		public List<Studente> Studenti
+		private ObservableCollection<Studente> _studenti;
+		public ObservableCollection<Studente> Studenti
 		{
 			get { return _studenti; }
 			set { _studenti = value; PropChanged("Studenti"); }
@@ -44,12 +45,13 @@ namespace WpfDemo.ViewModels
 
 		public StudentiViewModel()
         {
-            _studenti = StudentiController.GetStudenti(Filtro);
+			_studenti = new ObservableCollection<Studente>(StudentiController.GetStudenti(Filtro));
         }
 
         public void Filtra()
 		{
-			Studenti = StudentiController.GetStudenti(Filtro);
+			Studenti = new ObservableCollection<Studente>(StudentiController.GetStudenti(Filtro));
+			Studenti.Add(new Studente { Cognome = "AAA", Nome = "BBB" });
 		}
 
 		public void Elimina()

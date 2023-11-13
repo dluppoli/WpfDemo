@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpfDemo.Models
 {
-    public class Corso
+    public partial class Corso
     {
         public int Id { get; set; }
         public string Nome { get; set; }

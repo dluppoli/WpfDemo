@@ -45,7 +45,7 @@ namespace WpfDemo.Views
         private void Conferma_Click(object sender, RoutedEventArgs e)
         {
             vm.Conferma();
-            Close();
+            //Close();
         }
     }
 }
