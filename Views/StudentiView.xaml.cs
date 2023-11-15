@@ -33,9 +33,9 @@ namespace WpfDemo.Views
             vm.Filtra();
         }
 
-        private void Elimina_Click(object sender, RoutedEventArgs e)
+        private async void Elimina_Click(object sender, RoutedEventArgs e)
         {
-            vm.Elimina();
+            await vm.Elimina();
         }
 
         private void Nuovo_Click(object sender, RoutedEventArgs e)

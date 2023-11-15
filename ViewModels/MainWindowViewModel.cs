@@ -8,7 +8,7 @@ namespace WpfDemo.ViewModels
 {
     internal class MainWindowViewModel : BaseViewModel
     {
-		private bool _isLogged = false;
+		private bool _isLogged = true;
 
 		public bool IsLogged
 		{

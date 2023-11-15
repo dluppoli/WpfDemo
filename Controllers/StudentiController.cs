@@ -12,17 +12,17 @@ namespace WpfDemo.Controllers
     internal static class StudentiController
     {
         private static string connString = @"Server=E80\SQLEXPRESS;Database=Studenti;Integrated Security=true";
-        public static Studente GetStudenteRandom()
+        public static async Task<Studente> GetStudenteRandom()
         {
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 try
                 {
-                    conn.Open();
+                    await conn.OpenAsync();
                     var cmd = new SqlCommand("select TOP 1 Studenti.*, Corsi.Nome As NomeCorso from Studenti INNER JOIN Corsi ON Studenti.IdCorso = Corsi.Id order by NEWID()", conn);
-                    var reader = cmd.ExecuteReader();
+                    SqlDataReader reader = await cmd.ExecuteReaderAsync();
 
-                    reader.Read();
+                    await reader.ReadAsync();
                     return new Studente
                     {
                         Id = (int)reader["Id"],
@@ -43,20 +43,20 @@ namespace WpfDemo.Controllers
             }
         }
     
-        public static List<Studente> GetStudenti(string filtro) 
+        public static async Task<List<Studente>> GetStudenti(string filtro) 
         {
             List<Studente> risultati = new List<Studente>();
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 //var command = new SqlCommand("select Studenti.*, Corsi.Nome As NomeCorso from Studenti INNER JOIN Corsi ON Studenti.IdCorso = Corsi.Id where Studenti.Cognome like @filtro OR Studenti.Nome like @filtro order by Studenti.Id", conn);
                 var command = new SqlCommand("select Studenti.*, Corsi.Nome As NomeCorso from Studenti INNER JOIN Corsi ON Studenti.IdCorso = Corsi.Id order by Studenti.Id", conn);
                 //command.Parameters.AddWithValue("@filtro", $"%{filtro}%");
-                var reader = command.ExecuteReader();
+                var reader = await command.ExecuteReaderAsync();
 
-                while(reader.Read())
+                while(await reader.ReadAsync())
                 {
                     Studente s = new Studente
                     {
@@ -77,17 +77,17 @@ namespace WpfDemo.Controllers
                 //Predicate<Studente> f_anon = delegate (Studente s) { return s.CognomeNome.Contains(filtro); };
                 Predicate<Studente> f_anon = s => s.CognomeNome.Contains(filtro);
 
-                //return risultati.FindAll( s => s.CognomeNome.Contains(filtro) );
-                return risultati.FindAll(s => s.DataNascita.Month==11 );
+                return risultati.FindAll( s => s.CognomeNome.Contains(filtro) );
+                //return risultati.FindAll(s => s.DataNascita.Month==11 );
 
             }
         }
 
-        internal static void Add(Studente studente)
+        internal static async Task Add(Studente studente)
         {
             using (var conn = new SqlConnection(connString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 var command = new SqlCommand("INSERT INTO Studenti(Cognome,Nome,DataNascita,IdCorso) VALUES(@Cognome, @Nome, @DataNascita, @IdCorso)", conn);
                 command.Parameters.AddWithValue("@Cognome", studente.Cognome);
@@ -95,15 +95,15 @@ namespace WpfDemo.Controllers
                 command.Parameters.AddWithValue("@DataNascita", studente.DataNascita);
                 command.Parameters.AddWithValue("@IdCorso", studente.IdCorso);
 
-                command.ExecuteNonQuery();
+                await command.ExecuteNonQueryAsync();
             }
         }
 
-        internal static void Edit(Studente studente)
+        internal static async Task Edit(Studente studente)
         {
             using (var conn = new SqlConnection(connString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 var command = new SqlCommand("UPDATE Studenti SET Cognome=@Cognome, Nome=@Nome, DataNascita=@DataNascita, IdCorso=@IdCorso WHERE Id=@Id",conn);
                 command.Parameters.AddWithValue("@Cognome", studente.Cognome);
@@ -112,20 +112,20 @@ namespace WpfDemo.Controllers
                 command.Parameters.AddWithValue("@IdCorso", studente.IdCorso);
                 command.Parameters.AddWithValue("@Id", studente.Id);
 
-                command.ExecuteNonQuery();
+                await command.ExecuteNonQueryAsync();
             }
         }
 
-        internal static void Delete(int id)
+        internal static async Task Delete(int id)
         {
             using(SqlConnection conn = new SqlConnection(connString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 var command = new SqlCommand("DELETE FROM Studenti WHERE Id = @Id",conn);
                 command.Parameters.AddWithValue("@Id", id);
 
-                command.ExecuteNonQuery();
+                await command.ExecuteNonQueryAsync();
             }
         }
     }

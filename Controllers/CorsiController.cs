@@ -11,18 +11,18 @@ namespace WpfDemo.Controllers
     internal static class CorsiController
     {
         private static string connString = @"Server=E80\SQLEXPRESS;Database=Studenti;Integrated Security=true";
-        public static List<Corso> GetAll()
+        public static async Task<List<Corso>> GetAll()
         {
             List<Corso> risultati = new List<Corso>();
 
             using( var conn = new SqlConnection(connString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 var command = new SqlCommand("SELECT * FROM Corsi", conn);
-                var reader = command.ExecuteReader();
+                var reader = await command.ExecuteReaderAsync();
 
-                while(reader.Read())
+                while(await reader.ReadAsync())
                 {
                     Corso c = new Corso
                     {

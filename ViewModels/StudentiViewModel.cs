@@ -45,20 +45,24 @@ namespace WpfDemo.ViewModels
 
 		public StudentiViewModel()
         {
-			_studenti = new ObservableCollection<Studente>(StudentiController.GetStudenti(Filtro));
+            StudentiController.GetStudenti(Filtro)
+				.ContinueWith( t => Studenti = new ObservableCollection<Studente>(t.Result));
+            //_studenti = new ObservableCollection<Studente>(StudentiController.GetStudenti(Filtro));
         }
 
         public void Filtra()
 		{
-			Studenti = new ObservableCollection<Studente>(StudentiController.GetStudenti(Filtro));
-			Studenti.Add(new Studente { Cognome = "AAA", Nome = "BBB" });
-		}
+            //Studenti = new ObservableCollection<Studente>(StudentiController.GetStudenti(Filtro));
+            StudentiController.GetStudenti(Filtro)
+			    .ContinueWith(t => Studenti = new ObservableCollection<Studente>(t.Result));
 
-		public void Elimina()
+        }
+
+        public async Task Elimina()
 		{
 			if( StudenteSelezionato!=null)
 			{
-				StudentiController.Delete(StudenteSelezionato.Id);
+				await StudentiController.Delete(StudenteSelezionato.Id);
 				Filtro = "";
 				StudenteSelezionato=null;
 				Filtra();

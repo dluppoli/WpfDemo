@@ -42,9 +42,9 @@ namespace WpfDemo.Views
             Close();
         }
 
-        private void Conferma_Click(object sender, RoutedEventArgs e)
+        private async void Conferma_Click(object sender, RoutedEventArgs e)
         {
-            vm.Conferma();
+            await vm.Conferma();
             //Close();
         }
     }

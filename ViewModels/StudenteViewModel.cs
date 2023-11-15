@@ -41,29 +41,39 @@ namespace WpfDemo.ViewModels
         {
 			isNew = true;
 			_studente = new Studente();
-			_corsi = CorsiController.GetAll();
-			_title = "Nuovo studente";
+            //_corsi = CorsiController.GetAll();
+            CorsiController.GetAll().ContinueWith(t => Corsi = t.Result);
+            _title = "Nuovo studente";
         }
 
         public StudenteViewModel(Studente s)
         {
 			isNew = false;
 			_studente = s;
-            _corsi = CorsiController.GetAll();
+			//_corsi = await CorsiController.GetAll();
+
+			CorsiController.GetAll().ContinueWith(t => Corsi = t.Result);
+
 			_title = "Modifica studente";
+			//StudenteViewModelAsync();
         }
 
-        public void Conferma()
+		public async Task StudenteViewModelAsync()
+		{
+            _corsi = await CorsiController.GetAll();
+        }
+
+        public async Task Conferma()
 		{
 			if (isNew)
 			{
-				StudentiController.Add(Studente);
+				await StudentiController.Add(Studente);
 				Studente.Cognome = "";
 				Studente.Nome = "";
 				//Studente = new Studente();
 			}
 			else
-				StudentiController.Edit(Studente);
+				await StudentiController.Edit(Studente);
 		}
 
 		public void Annulla()

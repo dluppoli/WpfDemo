@@ -28,9 +28,9 @@ namespace WpfDemo.Views
             DataContext = vm;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            vm.GetStudenteRandom();
+            await vm.GetStudenteRandom();
         }
     }
 }

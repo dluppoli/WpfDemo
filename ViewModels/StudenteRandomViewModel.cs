@@ -20,9 +20,9 @@ namespace WpfDemo.ViewModels
 			set { _studente = value; PropChanged("Studente"); }
 		}
 
-		public void GetStudenteRandom()
+		public async Task GetStudenteRandom()
 		{ 
-			Studente = StudentiController.GetStudenteRandom();
+			Studente = await StudentiController.GetStudenteRandom();
         }
 	}
 }
