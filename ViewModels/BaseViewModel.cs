@@ -13,7 +13,7 @@ namespace WpfDemo.ViewModels
 
         public void PropChanged(string field)
         {
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(field));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(field));
         }
     }
 }

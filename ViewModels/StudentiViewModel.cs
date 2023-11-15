@@ -45,17 +45,27 @@ namespace WpfDemo.ViewModels
 
 		public StudentiViewModel()
         {
+			BackgroundJob();
             StudentiController.GetStudenti(Filtro)
 				.ContinueWith( t => Studenti = new ObservableCollection<Studente>(t.Result));
             //_studenti = new ObservableCollection<Studente>(StudentiController.GetStudenti(Filtro));
         }
 
-        public void Filtra()
+		public async void BackgroundJob()
 		{
-            //Studenti = new ObservableCollection<Studente>(StudentiController.GetStudenti(Filtro));
-            StudentiController.GetStudenti(Filtro)
-			    .ContinueWith(t => Studenti = new ObservableCollection<Studente>(t.Result));
+			while(true)
+			{
+				await Task.Delay(30000);
+				await Filtra();
+			}
+		}
 
+
+        public async Task Filtra()
+		{
+            Studenti = new ObservableCollection<Studente>(await StudentiController.GetStudenti(Filtro));
+            //StudentiController.GetStudenti(Filtro)
+			//    .ContinueWith(t => Studenti = new ObservableCollection<Studente>(t.Result));
         }
 
         public async Task Elimina()
@@ -65,24 +75,24 @@ namespace WpfDemo.ViewModels
 				await StudentiController.Delete(StudenteSelezionato.Id);
 				Filtro = "";
 				StudenteSelezionato=null;
-				Filtra();
+				await Filtra();
 			}
 		}
 
-		public void Nuovo()
+		public async void Nuovo()
 		{
 			StudenteView view = new StudenteView();
 			view.ShowDialog();
-			Filtra();
+			await Filtra();
 		}
 
-		public void Edit()
+		public async void Edit()
 		{
 			if (StudenteSelezionato != null)
 			{
 				StudenteView view = new StudenteView(StudenteSelezionato);
 				view.ShowDialog();
-				Filtra();
+				await Filtra();
 			}
         }
 	}
