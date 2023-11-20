@@ -64,6 +64,7 @@ namespace WpfDemo.ViewModels
         public async Task Filtra()
 		{
             Studenti = new ObservableCollection<Studente>(await StudentiController.GetStudenti(Filtro));
+			if( StudenteSelezionato != null) StudenteSelezionato = Studenti.FirstOrDefault(q => q.Id == StudenteSelezionato.Id);
             //StudentiController.GetStudenti(Filtro)
 			//    .ContinueWith(t => Studenti = new ObservableCollection<Studente>(t.Result));
         }
