@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WpfDemo.Controllers;
-using WpfDemo.Models;
+using WpfDemo.ControllersEF;
+using WpfDemo.ModelsEF;
 
 namespace WpfDemo.ViewModels
 {
@@ -12,17 +12,17 @@ namespace WpfDemo.ViewModels
     {
 		private bool isNew;
 
-		private Studente _studente;
+		private Studenti _studente;
 
-		public Studente Studente
+		public Studenti Studente
 		{
 			get { return _studente; }
 			set { _studente = value; PropChanged("Studente"); }
 		}
 
-		private List<Corso> _corsi;
+		private List<Corsi> _corsi;
 
-		public List<Corso> Corsi
+		public List<Corsi> Corsi
 		{
 			get { return _corsi; }
 			set { _corsi = value; }
@@ -40,13 +40,13 @@ namespace WpfDemo.ViewModels
 		public StudenteViewModel()
         {
 			isNew = true;
-			_studente = new Studente();
+			_studente = new Studenti();
             //_corsi = CorsiController.GetAll();
             CorsiController.GetAll().ContinueWith(t => Corsi = t.Result);
             _title = "Nuovo studente";
         }
 
-        public StudenteViewModel(Studente s)
+        public StudenteViewModel(Studenti s)
         {
 			isNew = false;
 			_studente = s;
@@ -68,9 +68,6 @@ namespace WpfDemo.ViewModels
 			if (isNew)
 			{
 				await StudentiController.Add(Studente);
-				Studente.Cognome = "";
-				Studente.Nome = "";
-				//Studente = new Studente();
 			}
 			else
 				await StudentiController.Edit(Studente);

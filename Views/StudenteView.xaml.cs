@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WpfDemo.Models;
+using WpfDemo.ModelsEF;
 using WpfDemo.ViewModels;
 
 namespace WpfDemo.Views
@@ -29,7 +29,7 @@ namespace WpfDemo.Views
             DataContext = vm;
         }
 
-        public StudenteView(Studente s)
+        public StudenteView(Studenti s)
         {
             InitializeComponent();
             vm = new StudenteViewModel(s);
@@ -45,7 +45,7 @@ namespace WpfDemo.Views
         private async void Conferma_Click(object sender, RoutedEventArgs e)
         {
             await vm.Conferma();
-            //Close();
+            Close();
         }
     }
 }

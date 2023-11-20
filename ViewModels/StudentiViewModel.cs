@@ -4,8 +4,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WpfDemo.Controllers;
-using WpfDemo.Models;
+using WpfDemo.ControllersEF;
+using WpfDemo.ModelsEF;
 using WpfDemo.Views;
 
 namespace WpfDemo.ViewModels
@@ -20,16 +20,16 @@ namespace WpfDemo.ViewModels
 			set { _filtro = value; PropChanged("Filtro"); Filtra(); }
 		}
 
-		private ObservableCollection<Studente> _studenti;
-		public ObservableCollection<Studente> Studenti
+		private ObservableCollection<Studenti> _studenti;
+		public ObservableCollection<Studenti> Studenti
 		{
 			get { return _studenti; }
 			set { _studenti = value; PropChanged("Studenti"); }
 		}
 
-		private Studente _studenteSelezionato;
+		private Studenti _studenteSelezionato;
 
-		public Studente StudenteSelezionato
+		public Studenti StudenteSelezionato
 		{
 			get { return _studenteSelezionato; }
 			set { _studenteSelezionato = value; PropChanged("StudenteSelezionato"); PropChanged("CanDelete"); }
@@ -47,7 +47,7 @@ namespace WpfDemo.ViewModels
         {
 			BackgroundJob();
             StudentiController.GetStudenti(Filtro)
-				.ContinueWith( t => Studenti = new ObservableCollection<Studente>(t.Result));
+				.ContinueWith( t => Studenti = new ObservableCollection<Studenti>(t.Result));
             //_studenti = new ObservableCollection<Studente>(StudentiController.GetStudenti(Filtro));
         }
 
@@ -63,7 +63,7 @@ namespace WpfDemo.ViewModels
 
         public async Task Filtra()
 		{
-            Studenti = new ObservableCollection<Studente>(await StudentiController.GetStudenti(Filtro));
+            Studenti = new ObservableCollection<Studenti>(await StudentiController.GetStudenti(Filtro));
 			if( StudenteSelezionato != null) StudenteSelezionato = Studenti.FirstOrDefault(q => q.Id == StudenteSelezionato.Id);
             //StudentiController.GetStudenti(Filtro)
 			//    .ContinueWith(t => Studenti = new ObservableCollection<Studente>(t.Result));

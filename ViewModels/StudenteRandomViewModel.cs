@@ -4,8 +4,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WpfDemo.Controllers;
-using WpfDemo.Models;
+using WpfDemo.ControllersEF;
+using WpfDemo.ModelsEF;
 
 namespace WpfDemo.ViewModels
 {
@@ -13,8 +13,8 @@ namespace WpfDemo.ViewModels
     {
         private string connString = @"Server=E80\SQLEXPRESS;Database=Studenti;Integrated Security=true";
 
-        private Studente _studente;
-        public Studente Studente
+        private Studenti _studente;
+        public Studenti Studente
 		{
 			get { return _studente; }
 			set { _studente = value; PropChanged("Studente"); }

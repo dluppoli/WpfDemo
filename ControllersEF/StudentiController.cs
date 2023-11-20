@@ -11,9 +11,32 @@ namespace WpfDemo.ControllersEF
 {
     internal class StudentiController
     {
-        public static async Task<Studente> GetStudenteRandom() { }
+        public static async Task<Studenti> GetStudenteRandom() {
 
-        public static async Task<List<Studente>> GetStudenti(string filtro) { }
+            Random rnd = new Random();
+
+            using (var context = new StudentiContext())
+            {
+                int min = await context.Studenti.MinAsync(m => m.Id);
+                int max = await context.Studenti.MaxAsync(m => m.Id);
+
+                while (true)
+                {
+                    int id = rnd.Next(min, max);
+                    Studenti s = await context.Studenti.FirstOrDefaultAsync(m => m.Id == id);
+                    if (s != null) return s;
+                }
+            }
+        }
+
+        public static async Task<List<Studenti>> GetStudenti(string filtro) {
+            using (var context = new StudentiContext())
+            {
+                return await context.Studenti
+                    .Where(w=> w.Cognome.Contains(filtro) || w.Nome.Contains(filtro))
+                    .ToListAsync();
+            }
+        }
 
         internal static async Task Add(Studenti studente) { 
             using(StudentiContext context = new StudentiContext())
