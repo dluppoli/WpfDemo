@@ -32,7 +32,7 @@ namespace WpfDemo.ControllersEF
         public static async Task<List<Studenti>> GetStudenti(string filtro) {
             using (var context = new StudentiContext())
             {
-                return await context.Studenti
+                return await context.Studenti.Include(i=>i.Corsi)
                     .Where(w=> w.Cognome.Contains(filtro) || w.Nome.Contains(filtro))
                     .ToListAsync();
             }
