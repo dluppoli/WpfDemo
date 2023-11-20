@@ -16,7 +16,16 @@ namespace WpfDemo.ViewModels
 		public string Username
 		{
 			get { return _username; }
-			set { _username = value; PropChanged("Username"); PropChanged("CanLogin"); }
+			set { 
+				_username = value; 
+				PropChanged("Username"); 
+
+				ClearErrors("Username");
+				if (string.IsNullOrEmpty(value)) 
+					AddError("Username", "Obbligatorio");
+                
+				PropChanged("CanLogin");
+            }
 		}
 
 		private string _password;
@@ -37,7 +46,8 @@ namespace WpfDemo.ViewModels
 
 		public bool CanLogin
 		{
-			get { return !string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password); }
+			get { return !HasErrors; }
+				//return !string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password); }
             // !( string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password) )
         }
 
