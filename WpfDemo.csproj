@@ -76,6 +76,7 @@
     <Compile Include="ControllersEF\StudentiController.cs" />
     <Compile Include="Controllers\CorsiController.cs" />
     <Compile Include="Controllers\StudentiController.cs" />
+    <Compile Include="Converters\BooleanToSiNoConverter.cs" />
     <Compile Include="ModelsEF\Corsi.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -94,6 +95,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ModelsEF\ModelsExtensions\Studenti.cs" />
     <Compile Include="ModelsEF\Studenti.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

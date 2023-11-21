@@ -4,8 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDemo.Views"
+        xmlns:cvs="clr-namespace:WpfDemo.Converters"
         mc:Ignorable="d"
         Height="450" Width="800">
+
+    <Page.Resources>
+        <cvs:BooleanToSiNoConverter x:Key="BooleanToSiNoConverter"/>
+    </Page.Resources>
+    
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -33,6 +39,7 @@
                 <DataGridTextColumn Header="Nome" Binding="{Binding Nome}"/>
                 <DataGridTextColumn Header="Data di nascita" Binding="{Binding DataNascita, StringFormat='dd-MM-yyyy'}"/>
                 <DataGridTextColumn Header="Corso" Binding="{Binding Corsi.Nome}"/>
+                <DataGridTextColumn Header="In regola" Binding="{Binding InRegolaConPagamenti, Converter={StaticResource BooleanToSiNoConverter} }"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

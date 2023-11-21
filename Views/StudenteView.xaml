@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" FontSize="48" FontWeight="Bold" Content="{Binding Title}"/>
         <Label Grid.Row="1" Grid.Column="0">Cognome</Label>
-        <TextBox Grid.Row="2" Grid.Column="0" Text="{Binding Studente.Cognome}"></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="0" Text="{Binding Studente.Cognome, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
         <Label Grid.Row="1" Grid.Column="2">Nome</Label>
         <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding Studente.Nome}"></TextBox>
 
